@@ -88,8 +88,8 @@ class Readings:
             self.current_reading = 0
         else:
             self.current_reading += 1
-            if self.current_reading == 0:
-                self.current_reading = 0
+            if self.current_reading >= 0:
+                self.current_reading = -len(self._queue)
 
     @property
     def current(self) -> Leg:

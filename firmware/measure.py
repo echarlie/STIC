@@ -67,6 +67,8 @@ async def measure(devices: hardware.Hardware, cfg: config.Config, disp: display.
         elif btn == "b":
             logger.debug("B pressed")
             await view_prev_readings(devices, cfg, disp)
+            readings.current_reading = 0
+            success = True
         # noinspection PyUnboundLocalVariable
         if readings.current_reading is not None and success:
             disp.update_measurement(readings.current, readings.current_reading)
@@ -76,6 +78,8 @@ async def view_prev_readings(devices: hardware.Hardware, cfg: config.Config, dis
     logger.debug("showing previous readings")
     readings.get_prev_reading()
     success = True
+    if readings.current_reading is not None and success:
+        disp.update_measurement(readings.current, readings.current_reading)
     while True:
         await devices.laser.set_laser(False)
         btn, click = await devices.both_buttons.wait(a=[Button.SINGLE, Button.LONG],
@@ -90,7 +94,6 @@ async def view_prev_readings(devices: hardware.Hardware, cfg: config.Config, dis
             break
         if readings.current_reading is not None and success:
             disp.update_measurement(readings.current, readings.current_reading)
-
 
 
 async def get_raw_measurement(devices: hardware.Hardware, disp: display.Display, with_laser: bool = True):
