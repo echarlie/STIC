@@ -83,6 +83,14 @@ class Readings:
             if self.current_reading < -len(self._queue):
                 self.current_reading = -1
 
+    def get_next_reading(self):
+        if self.current_reading is None:
+            self.current_reading = 0
+        else:
+            self.current_reading += 1
+            if self.current_reading == 0:
+                self.current_reading = 0
+
     @property
     def current(self) -> Leg:
         return self._queue[self.current_reading]
