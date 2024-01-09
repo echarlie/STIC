@@ -52,7 +52,8 @@ failed" or "Magnetic Anomaly: Iron near".
 The laser stays on in ``measure`` mode. This does not require much power
 
 Press **B** to cycle through previous readings. You can tell which reading you are looking at by the small number at
-the right side of the display.
+the right side of the display. This will turn the laser off. Use **B** to go to older readings, and **A** to go to
+newer readings. **Hold A** to return to ``measure`` mode.
 
 .. |bt_on| image:: bt_on.png
 
